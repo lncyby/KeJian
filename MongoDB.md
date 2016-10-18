@@ -47,8 +47,168 @@
 
 ##### 将下载 mongodb-linux-x86_64-ubuntu1604-3.2.8.tgz 文件移动到 /usr/local
     mv mongodb-linux-x86_64-ubuntu1604-3.2.8.tgz /usr/local
-
-    解压 mongodb-linux-x86_64-ubuntu1604-3.2.8.tgz
+##### 解压 mongodb-linux-x86_64-ubuntu1604-3.2.8.tgz
     tar xf mongodb-linux-x86_64-ubuntu1604-3.2.8.tgz
+##### 将解压后的可执行文件路径添加到系统环境变量中
+    修改文件/etc/bash.basrc文件，在最后添加如下内容：
+    PATH=$PATH:/usr/local/mongodb-linux-x86_64-ubuntu1604-3.2.8/bin/
+    export PATH
+##### 重新启动环境变量
+    source /etc/bash.bashrc
+##### 创建默认数据库路径
+    mkdir -p /data/db
+##### 启动 mongod 服务
+    １．直接运行　mongod 即可，使用默认数据库路径
+##### mongod -dbpath/xxxx/yyyy 指定数据路径
+##### 运行MongDB shell  连接其他主机的ｔｅｓｔ数据库
+    mongo 连接本地默认数据库
+    mongo 192.168.1.2./test  连接其他主机的test数据库
+    mongo 192.168.1.1.2/test -u xxx -p yyyy  使用用户名和密码连接其他主机的数据库
+   
+## oDB的相关概念
 
-    将解压后的可执行文件路径添加到系统环境变量中
+##### 常见的概念有数据库, 表, 字段, 索引,主键等。在MongoDB中也有类似的概念，如下：
+
+关系型概念 | MongoDB概念 | 含义
+—- | —- | —- |
+database | database | 数据库
+table | collection | 数据库表/集合
+row | document | 数据记录/文档
+column | field | 数据字段/域
+index | index | 索引
+primary key | primary key | 主键,MongoDB自动将_id字段设置为主键
+   
+## 对比：
+
+数据库表格式：
+id | name | age
+—- | —- | —- |
+0001 | lisi | 10
+jj0002 | zhangsan | 11
+
+##### 结合格式：
+    {
+        "_id":ObjectId("56064886abe2f21f36b03134"),
+        "name":"lisi"
+        "age":10
+    }
+    {
+         "_id":ObjectId("56064886abe2f21f36b03135),
+        "name":"zhangsan"
+        "age":11
+    }
+### 数据库
+##### MongDB中数据库的命名规则
+
+    数据库名可以是满足以下条件的任意UTF-8字符串。
+    不能是空字符串（““)。
+    不得含有空格、.、$、/、和。
+    应全部小写。
+    不要超过64字节。
+    不要使用admin,local,config保留名字。
+
+##### 在mongo shell中可以显示数据名称
+    > show dbs
+    local 0.000GB
+    > db
+    test
+    >
+### 集合
+##### 集合就是 MongoDB文档组，类似于RDBMS (关系数据库管理系统：Relational Database Management System)中的表格。集合存在于数据库中，集合没有固定的结构，这意味这你在对集合可以插入不同格式和类型的数据，但通常抢矿下我们插入集合的数据都会有一定的关联性。当第一个文档插入是，集合就会被创建。
+### 集合的命名规则
+##### 集合名不能是空字符串“　”。
+##### 集合名不能含有字符（空字符），这个字符表示集合名的结尾。
+##### 集合名不能以"system."开头，这是为系统集合保留的前缀。
+##### 用户创建的集合名字不能含有保留字符，不要包含$符号。
+
+### 不同结构的文档可以插入同一个集合
+    {"name":"lisi","age":10}
+    {"name":"zhangsan","age":12,"gender":"male"}
+    {"name":"wangwu","age":14,"gender":"female","address":"北京，海定区"}
+### 文档
+##### 文档是MongoDB的核心概念。文档由一系列键及其关联的值有序组成。比如：
+    {"name":"lisi", "age": 10}
+### 文档键的命名规则：
+##### 文档的键是字符串。除了少数例外情况，键可以使用任意UTF-8字符。
+#####      键不能含有 (空字符)。这个字符用来表示键的结尾。
+#####      .和$有特别的意义，只有在特定环境下才能使用。
+#####      以下划线 _ 开头的键是保留的。
+### 注意   
+##### 文档中的键/值对是有序的。
+##### 文档中的值不仅可以是在双引号里面的字符串，还可以是其他几种数据类型（甚至可以是整个嵌入的文档)。
+##### MongoDB区分类型和大小写。
+##### MongoDB的文档不能有重复的键。
+
+### MongoDB常用数据类型
+##### 字符串。存储数据常用的数据类型。在 MongoDB 中，UTF-8 编码的字符串才是合法的。
+##### 整型数值。用于存储数值。根据你所采用的服务器，可分为 32 位或 64 位。
+##### 布尔值。用于存储布尔值（真/假）。
+##### 双精度浮点值。用于存储浮点值。
+##### Arrays 用于将数组或列表或多个值存储为一个键。
+##### Timestamp 时间戳。记录文档修改或添加的具体时间。
+##### Object 用于内嵌文档。
+##### Null 用于创建空值。
+##### Symbol 符号。该数据类型基本上等同于字符串类型，但不同的是，它一般用于采用特殊符号类型的语言。
+##### Date 日期时间。用 UNIX 时间格式来存储当前日期或时间。创建 Date 对象，传入年月日信息。
+##### Object ID 对象 ID。
+##### 二进制数据
+##### 代码类型
+##### 正则表达式类型。
+
+
+# MongoDB 数据库的创建及删除
+### 数据库的创建
+##### 使用 use dbname 命令创建新数据库，如果dbname已经存在，那么就切换到数据库。
+    > use stu
+    switched to db stu
+    > db 
+    stu
+##### 当先数据库中鞋服一些数据后，通过show dbs就可以看到创建的数据库。
+    > db.firstclass.insert({"name":"lisi","age":12})
+    WriteResult({"nInserted":1})
+    > show dbs
+    local 0.000GB
+    stu   0.000GB
+
+### 数据库的删除
+##### 使用　db.dropDatabase()来删除数据库
+    > db
+    stu
+    > db.dropDatabase()
+    {"drop":"stu","ok":1}
+    > show dbs
+    local 0.000GB
+    test  0.000GB
+## MongoDB集合的创建和删除
+### 集合的创建
+##### 使用db.collectionName.insert()创建。
+    > db.one.insert({"name":"lisi","age":12})
+    WriteResult({"nInserted":1})
+### 集合的删除
+##### 使用 db.collectionName.drop()删除集合。
+    > db.one.drop()
+    true
+### MongoDB文档操作
+#### 插入文档
+##### 文档的数据结构和JSON基本一样,所有存储在集合中的数据都是BSON格式。
+##### BSON是一种类json的一种二进制形式的存储格式,简称Binary JSON。 
+##### 插入方法：
+##### db.collectionName.insert(doc) 
+##### db.collectionName.save(doc) 
+    直接插入：
+    > db.one.insert({"name":"lisi","age":12})
+    WriteResult({"nInserted":1})
+    > db.one.find()
+    { "_id":ObjectId("578b4fc554ec6d203080b398"),"name":"lisi","age":12}
+    >
+    
+    先保存于变量中：
+    > doc {"name":"zhangsna","age":13};
+    {"name":"zhangsan","age":13}
+    > db.one.insert(doc);
+    WriteResult({"nInserted":1})
+    >
+##### 如果不指定_id 字段 save() 方法类似于 insert() 方法。如果指定 _id 字段，则会更新该 _id的数据
+
+
+    
