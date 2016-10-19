@@ -215,13 +215,13 @@ jj0002 | zhangsan | 11
 ##### db.collectionName.update()
 ##### db.collectionName.save()
     db.collectionName.update(
-        {query},
-        {update},
-        {
-            upsert: <boolean>
-            multi: <boolean>
-            writeConcern: <document>
-        }
+    {query},
+    {update},
+    {
+    upsert: <boolean>
+    multi: <boolean>
+    writeConcern: <document>
+    }
     )
     参数说明：
     query : update的查询条件。
