@@ -195,6 +195,7 @@ jj0002 | zhangsan | 11
 ##### 插入方法：
 ##### db.collectionName.insert(doc) 
 ##### db.collectionName.save(doc) 
+
     直接插入：
     > db.one.insert({"name":"lisi","age":12})
     WriteResult({"nInserted":1})
@@ -208,6 +209,7 @@ jj0002 | zhangsan | 11
     > db.one.insert(doc);
     WriteResult({"nInserted":1})
     >
+    
 ##### 如果不指定_id 字段 save() 方法类似于 insert() 方法。如果指定 _id 字段，则会更新该 _id的数据
 
 ### 更新文档
