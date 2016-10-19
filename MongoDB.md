@@ -246,41 +246,41 @@ jj0002 | zhangsan | 11
     { "_id" : ObjectId("578b4fc554ec6d203080b399"), "name" : "zhangsan", "age" : 20 }
     
 ##### 其他更新操作：
-    //更新第一个符合条件
-    db.one.update({"name":"zhangsan"},{$set:{"age":30}})
+    //更新第一个符合条件
+    db.one.update({"name":"zhangsan"},{$set:{"age":30}})
     
     //更新所有符合条件
-    db.one.update({"name":"zhangsan"},{$set:{"age":30}},false,true)
+    db.one.update({"name":"zhangsan"},{$set:{"age":30}},false,true)
     
     //没有符合条件，添加一条文档进去
-    db.one.update({"name":"zhangsan"},{$set:{"age":30}},true,true)
+    db.one.update({"name":"zhangsan"},{$set:{"age":30}},true,true)
     
-    //将所有name=zhangsan的文档的age增加５
+    //将所有name=zhangsan的文档的age增加５
     db.one.update({"name":"zhangsan"},{$inc:{"age":5}},false,true)
     
     //将所有name=zhangsan 的文档的age和course字段删除
-    db.one.update({"name":"zhangsan"},{$unset:{"age":1, "course":1}}, false,true)
+    db.one.update({"name":"zhangsan"},{$unset:{"age":1, "course":1}}, false,true)
     
-    //在一个数组域中添加一个数据并且讲size域的值加１
-    db.one.update({"age":10},{$push:{"course":"html"}, $inc:{"size":1}}, false,false)
+    //在一个数组域中添加一个数据并且讲size域的值加１
+    db.one.update({"age":10},{$push:{"course":"html"}, $inc:{"size":1}}, false,false)
     
     //在一个数组域中添加多个数据
     db.one.update({"age":10},{$pushAll:{"course":["html","python"]}}, false,false)
     
     //删除数组域中的一个数据
-    db.one.update({"age":20},{$pop:{"course":-1}}, false,false)  //删除course第一个
+    db.one.update({"age":20},{$pop:{"course":-1}}, false,false)  //删除course第一个
     db.one.update({"age":20},{$pop:{"course":1}}, false,false)　　//删除course最后一个
     
     //删除数组域中的某个特定数据
     db.one.update({"age":20},{$pull:{"course":"python"}}, false,false)
     
-    //删除数组域中的过个数据
+    //删除数组域中的过个数据
     db.one.update({"age":20},{$pullALL:{"course":["python","C"]}}, false,false)
     
     //修改某个域的名字
     db.one.update({"age":20},{$rename:{"course":"class"}}, false,false)
     
-    //在某个数组域中添加数据（数据不存在时，才会添加）
+    //在某个数组域中添加数据（数据不存在时，才会添加）
     db.one.update({"age":20},{$addToSet:{"course":"python"}}, false,true)
     
 ### 删除文档
