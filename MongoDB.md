@@ -238,7 +238,7 @@ jj0002 | zhangsan | 11
     { "_id" : ObjectId("578b4fc554ec6d203080b398"), "name" : "lisi", "age" : 12 }
     { "_id" : ObjectId("578b4fc554ec6d203080b399"), "name" : "zhangsan", "age" : 20 }
     >
-    给_id为ObjectId("578b4fc554ec6d203080b399")的文档添加一个"gender"
+    给_id为ObjectId("578b4fc554ec6d203080b399")的文档添加一个"gender"
     > db.one.save({ "_id" : ObjectId("578b4fc554ec6d203080b399"), "name" : "zhangsan", "age" : 20, "gender" : "male" })
     WriteResult({"nMatched":1, "nUpserted" : 0, "nModified" : 1 })
     > db.one.find()
