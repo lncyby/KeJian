@@ -251,7 +251,7 @@ jj0002 | zhangsan | 11
     
     //更新所有符合条件
     db.one.update({"name":"zhangsan"},{$set:{"age":30}},false,true)
-    
+    
     //没有符合条件，添加一条文档进去
     db.one.update({"name":"zhangsan"},{$set:{"age":30}},true,true)
     
@@ -269,7 +269,7 @@ jj0002 | zhangsan | 11
     
     //删除数组域中的一个数据
     db.one.update({"age":20},{$pop:{"course":-1}}, false,false)  //删除course第一个
-    db.one.update({"age":20},{$pop:{"course":1}}, false,false)　　//删除course最后一个
+    db.one.update({"age":20},{$pop:{"course":1}}, false,false)　　//删除course最后一个
     
     //删除数组域中的某个特定数据
     db.one.update({"age":20},{$pull:{"course":"python"}}, false,false)
