@@ -196,7 +196,7 @@ jj0002 | zhangsan | 11
 ##### db.collectionName.insert(doc) 
 ##### db.collectionName.save(doc) 
     直接插入：
-    > db.one.insert({"name":"lisi","age":12})
+    > db.one.insert({"name":"lisi","age":12})
     WriteResult({"nInserted":1})
     > db.one.find()
     { "_id":ObjectId("578b4fc554ec6d203080b398"),"name":"lisi","age":12}
