@@ -202,8 +202,8 @@ jj0002 | zhangsan | 11
     { "_id":ObjectId("578b4fc554ec6d203080b398"),"name":"lisi","age":12}
     >
     
-    先保存于变量中：
-    > doc {"name":"zhangsna","age":13};
+    先保存于变量中：
+    > doc {"name":"zhangsna","age":13};
     {"name":"zhangsan","age":13}
     > db.one.insert(doc);
     WriteResult({"nInserted":1})
