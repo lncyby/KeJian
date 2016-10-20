@@ -60,12 +60,12 @@
 ##### 启动 mongod 服务
     １．直接运行　mongod 即可，使用默认数据库路径
 ##### mongod -dbpath/xxxx/yyyy 指定数据路径
-##### 运行MongDB shell  连接其他主机的ｔｅｓｔ数据库
+###### 运行MongDB shell  连接其他主机的ｔｅｓｔ数据库
     mongo 连接本地默认数据库
     mongo 192.168.1.2./test  连接其他主机的test数据库
     mongo 192.168.1.1.2/test -u xxx -p yyyy  使用用户名和密码连接其他主机的数据库
    
-## oDB的相关概念
+## MongoDB的相关概念
 
 ##### 常见的概念有数据库, 表, 字段, 索引,主键等。在MongoDB中也有类似的概念，如下：
 
