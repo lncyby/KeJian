@@ -293,13 +293,13 @@ jj0002 | zhangsan | 11
            writeConcern: document
         }
     )
-    参数说明：
+    参数说明：
     query: 删除制定条件的文档
-    justOne: 设置为true或１是，仅仅删除第一个符合条件的文档，默认删除所有符合条件的
+    justOne: 设置为true或１是，仅仅删除第一个符合条件的文档，默认删除所有符合条件的
     writeConcern: 抛出异常
     
     > db.one.find()
-    { "_id" : ObjectId("578b4fc554ec6d203080b398"), "name" : "lisi", "age" : 10 }
+    { "_id" : ObjectId("578b4fc554ec6d203080b398"), "name" : "lisi", "age" : 10 }
     { "_id" : ObjectId("578b4fc554ec6d203080b398"), "name" : "lisi1", "age" : 10 }
     { "_id" : ObjectId("578b4fc554ec6d203080b398"), "name" : "lisi2", "age" : 10 }
     > db.one.remove({"age":10},1)
@@ -310,7 +310,7 @@ jj0002 | zhangsan | 11
     >
     
     >db.one.remove({})  //删除了第一个符合条件的文档
-    WriteResult({"nRmoved": ２ })
+    WriteResult({"nRmoved": ２ })
     
 ### 查找文档
 ##### 查找方法
@@ -320,15 +320,15 @@ jj0002 | zhangsan | 11
 ##### 查找所有文档：
     db.collectionName.find()
 ##### 按照条件操作符查找：
-    db.collectionName.find({"age": {$lt: 10}})   //   查询年龄小于　　１０　的文档
-    db.collectionName.find({"age": {$lt3: 10}})  //　　查询年龄小于等于　　１０　的文档
-    db.collectionName.find({"age": {$gte: 10}})  //　　查询年龄大于等于　　１０　的文档
-    db.collectionName.find({"age": {$gt: 10}})   //　　查询年龄大于　　１０　的文档
-    db.collectionName.find({"age": {$ne: 10}})   //    查询年龄不等于　　１０　的文档
-    db.collectionName.find({"age": {$mod: [10,0]}})   //　　查询年龄能被１０整除的文档
-    db.collectionName.find({"age": {$not: {$mod: [10,0]}}})  //　　查询年龄不能被１０整除的文档
-    db.collectionName.find({"course": {$all: ["english","math"]}})   //　　查询course包含english和math的文档
-    db.collectionName.find({"course": {$size: 3}})  //　　查找　course数组元素个数等于３的文档
+    db.collectionName.find({"age": {$lt: 10}})   //   查询年龄小于　　１０　的文档
+    db.collectionName.find({"age": {$lt3: 10}})  //　　查询年龄小于等于　　１０　的文档
+    db.collectionName.find({"age": {$gte: 10}})  //　　查询年龄大于等于　　１０　的文档
+    db.collectionName.find({"age": {$gt: 10}})   //　　查询年龄大于　　１０　的文档
+    db.collectionName.find({"age": {$ne: 10}})   //    查询年龄不等于　　１０　的文档
+    db.collectionName.find({"age": {$mod: [10,0]}})   //　　查询年龄能被１０整除的文档
+    db.collectionName.find({"age": {$not: {$mod: [10,0]}}})  //　　查询年龄不能被１０整除的文档
+    db.collectionName.find({"course": {$all: ["english","math"]}})   //　　查询course包含english和math的文档
+    db.collectionName.find({"course": {$size: 3}})  //　　查找　course数组元素个数等于３的文档
     
     
     
