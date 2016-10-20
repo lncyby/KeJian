@@ -159,12 +159,12 @@ jj0002 | zhangsan | 11
 # MongoDB 数据库的创建及删除
 ### 数据库的创建
 ##### 使用 use dbname 命令创建新数据库，如果dbname已经存在，那么就切换到数据库。
-    > use stu
+    > use stu
     switched to db stu
     > db 
     stu
 ##### 当先数据库中鞋服一些数据后，通过show dbs就可以看到创建的数据库。
-    > db.firstclass.insert({"name":"lisi","age":12})
+    > db.firstclass.insert({"name":"lisi","age":12})
     WriteResult({"nInserted":1})
     > show dbs
     local 0.000GB
@@ -172,7 +172,7 @@ jj0002 | zhangsan | 11
 
 ### 数据库的删除
 ##### 使用　db.dropDatabase()来删除数据库
-    > db
+    > db
     stu
     > db.dropDatabase()
     {"drop":"stu","ok":1}
